@@ -1,7 +1,23 @@
 :root {
   font-family: monospace;
   font-size: 20px;
+  --color: #06aa06;
+  --light-color: #23ff23;
 }
 body {
   margin: 0;
+}
+a {
+  color: var(--color);
+}
+a:hover {
+  color: var(--light-color);
+}
+a:hover img {
+  outline: 2px solid var(--light-color);
+  box-shadow: 0.5rem 0.5rem 0 var(--light-color);
+}
+strong {
+  color: var(--color);
+  font-weight: normal;
 }
