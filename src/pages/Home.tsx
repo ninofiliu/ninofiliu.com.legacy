@@ -1,3 +1,4 @@
+import Dither from "../components/Dither";
 import "./Home.css";
 
 type SummaryItem = {
@@ -69,6 +70,8 @@ const summary: SummaryItem[] = [
 export default () => (
   <div className="Home">
     <div>
+      <Dither src="/nino.jpg" />
+      <br />
       Hi, I'm Nino Filiu
       <br />
       <br />
@@ -84,12 +87,11 @@ export default () => (
       <a href="https://soundcloud.com/stanleyfatmax">Soundcloud</a>: music
       <br />
       <a href="https://objkt.com/profile/tz1P4WFu3TojcvkiLdgRnsnf3jZ6F1DZzFtb">Objkt</a>: NFTs
-      <br />
     </div>
     <div className="Home-summary">
       Everything I am proud of:
       {summary.map((item) => (
-        <a href={item.link} className="Home-summary-item">
+        <a href={item.link} className="Home-summary-item" key={item.name}>
           <img src={item.cover}></img>
           <div>
             <strong>{item.name}</strong>: {item.description}
