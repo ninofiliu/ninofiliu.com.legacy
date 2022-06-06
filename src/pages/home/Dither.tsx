@@ -9,6 +9,7 @@ export default ({ src }: { src: string }) => {
       if (!divRef.current) return;
       if (divRef.current.childElementCount > 0) return;
       const canvas = document.createElement("canvas");
+      canvas.style.imageRendering = "crisp-edges";
       divRef.current.append(canvas);
 
       const img = document.createElement("img");

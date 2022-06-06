@@ -1,4 +1,4 @@
-import Dither from "../components/Dither";
+import Dither from "./Dither";
 import "./Home.css";
 
 type SummaryItem = {
