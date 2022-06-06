@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Dither from "./Dither";
 import "./Home.css";
 
@@ -87,6 +88,9 @@ export default () => (
       <a href="https://soundcloud.com/stanleyfatmax">Soundcloud</a>: music
       <br />
       <a href="https://objkt.com/profile/tz1P4WFu3TojcvkiLdgRnsnf3jZ6F1DZzFtb">Objkt</a>: NFTs
+      <br />
+      <br />
+      <Link to="/hire-me">Hire me</Link>
     </div>
     <div className="Home-summary">
       Everything I am proud of:

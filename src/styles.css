@@ -17,7 +17,36 @@ a:hover img {
   outline: 2px solid var(--light-color);
   box-shadow: 0.5rem 0.5rem 0 var(--light-color);
 }
+button {
+  font: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  border: 1px solid black;
+}
+button:hover {
+  background-color: black;
+  color: white;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+hr {
+  border: none;
+  border-bottom: 1px solid black;
+  margin: 2rem 0;
+}
 strong {
   color: var(--color);
   font-weight: normal;
+}
+
+.u-article {
+  margin: 2rem;
+  max-width: 666px;
+}
+.u-button-row button {
+  padding: 0.1rem 0.3rem;
+  margin-right: 0.5rem;
+  margin-top: 0.3rem;
 }

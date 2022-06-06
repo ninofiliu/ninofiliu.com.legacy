@@ -1,0 +1,32 @@
+.HireMe-event {
+  margin: 2rem 0;
+}
+.HireMe-skill {
+  border: 1px solid transparent;
+  color: transparent;
+  display: inline-block;
+}
+.HireMe-skill.HireMe-skill--academic {
+  border-color: black;
+  color: black;
+}
+.HireMe-skill.HireMe-skill--academic:hover {
+  background-color: black;
+  color: white;
+}
+.HireMe-skill.HireMe-skill--programming {
+  border-color: var(--color);
+  color: var(--color);
+}
+.HireMe-skill.HireMe-skill--programming:hover {
+  background-color: var(--color);
+  color: white;
+}
+.HireMe-skill.HireMe-skill--artistic {
+  border-color: var(--light-color);
+  color: var(--light-color);
+}
+.HireMe-skill.HireMe-skill--artistic:hover {
+  background-color: var(--light-color);
+  color: white;
+}
