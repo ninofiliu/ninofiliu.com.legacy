@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { links, isInternalLink, isExternalLink } from "../../links";
 import Dither from "./Dither";
 import "./Home.css";
 
@@ -79,21 +80,23 @@ export default () => (
       I create art with code, videos, music, programs, and other things too
       <br />
       <br />
-      <a href="https://instagram.com/ssttaacckkyy">Instagram</a>: generative art, photography, random
+      {links.filter(isExternalLink).map((link) => (
+        <>
+          <a href={link.href}>{link.name}</a>: {link.description}
+          <br />
+        </>
+      ))}
       <br />
-      <a href="https://twitter.com/ninofiliu">Twitter</a>: generative art, web dev research
-      <br />
-      <a href="https://github.com/ninofiliu">Github</a>: open source projects
-      <br />
-      <a href="https://soundcloud.com/stanleyfatmax">Soundcloud</a>: music
-      <br />
-      <a href="https://objkt.com/profile/tz1P4WFu3TojcvkiLdgRnsnf3jZ6F1DZzFtb">Objkt</a>: NFTs
-      <br />
-      <br />
-      <Link to="/hire-me">Hire me</Link>
+      {links
+        .filter(isInternalLink)
+        .filter((link) => link.to !== "/")
+        .map((link) => (
+          <>
+            <Link to={link.to}>{link.name}</Link>
+          </>
+        ))}
     </div>
     <div className="Home-summary">
-      Everything I am proud of:
       {summary.map((item) => (
         <a href={item.link} className="Home-summary-item" key={item.name}>
           <img src={item.cover}></img>
