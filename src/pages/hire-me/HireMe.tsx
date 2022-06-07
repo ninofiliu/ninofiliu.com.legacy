@@ -34,10 +34,6 @@ export default () => {
         Or just understand what I can do, because I do many things and this can be confusing, so here's basically everything I
         did ever
       </p>
-      <p>
-        Please note that I am very happy at my current company so I won't be available for full-time jobs in the near future,
-        but I love to build short-term projects on the side with amazing people!
-      </p>
       <p className="u-button-row">
         <button onClick={() => setChronological(true)} disabled={chronological}>
           Oldest first
