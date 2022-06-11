@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Form from "../../components/form/Form";
+import { Options } from "../../components/form/types";
 import Nav from "../../components/Nav";
 import "./VisualAlgorithms.css";
 
 type Alg = {
   name: string;
   text: JSX.Element;
+  options: Options;
+  defaultValues: any;
+  ready: (values: any) => boolean;
 };
 
 const algs: Alg[] = [
@@ -20,6 +25,26 @@ const algs: Alg[] = [
         </p>
       </>
     ),
+    options: {
+      warpedImage: {
+        kind: "file",
+        accept: "image/*",
+      },
+      warpMap: {
+        kind: "file",
+        accept: "image/*",
+      },
+      force: {
+        kind: "number",
+        min: 0,
+      },
+    },
+    defaultValues: {
+      warpedImage: undefined,
+      warpMap: undefined,
+      force: 1,
+    },
+    ready: () => false,
   },
 ];
 
@@ -44,6 +69,7 @@ const texts = {
 
 export default () => {
   const [alg, setAlg] = useState<Alg | undefined>(undefined);
+  const [values, setValues] = useState({});
 
   const text = (() => {
     if (alg === undefined) return texts.home;
@@ -51,18 +77,23 @@ export default () => {
   })();
 
   const selectAlg = (name: string) => {
-    setAlg(algs.find((a) => a.name === name));
+    const newAlg = algs.find((a) => a.name === name);
+    setAlg(newAlg);
+    if (newAlg) {
+      setValues(newAlg.defaultValues);
+    }
   };
 
   return (
     <div className="VisualAlgorithms">
       <div className="-controls">
-        <select onChange={(evt) => selectAlg(evt.target.value)}>
+        <select value={alg?.name} onChange={(evt) => selectAlg(evt.target.value)}>
           <option>Chose an algorithm</option>
           {algs.map((alg) => (
             <option key={alg.name}>{alg.name}</option>
           ))}
         </select>
+        {alg && <Form options={alg.options} values={values} onChange={setValues} />}
       </div>
       <div className="-text-container">
         <div className="-text">{text}</div>
