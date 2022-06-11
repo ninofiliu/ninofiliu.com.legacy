@@ -1,102 +1,44 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Form from "../../components/form/Form";
-import { Options } from "../../components/form/types";
-import Nav from "../../components/Nav";
 import "./VisualAlgorithms.css";
+import turbulenz from "./turbulenz";
+import texts from "./texts";
+import startCase from "lodash/startCase";
 
-type Alg = {
-  name: string;
-  text: JSX.Element;
-  options: Options;
-  defaultValues: any;
-  ready: (values: any) => boolean;
-};
-
-const algs: Alg[] = [
-  {
-    name: "Turbulenz",
-    text: (
-      <>
-        <h2>Turbulenz</h2>
-        <p>Takes an image and repeatedly warp it according to a warp map image</p>
-        <p>
-          If a pixel at (x,y) is very red, it's gonna shift the pixel right, and if it's very green, it's gonna shift the pixel
-          down
-        </p>
-      </>
-    ),
-    options: {
-      warpedImage: {
-        kind: "file",
-        accept: "image/*",
-      },
-      warpMap: {
-        kind: "file",
-        accept: "image/*",
-      },
-      force: {
-        kind: "number",
-        min: 0,
-      },
-    },
-    defaultValues: {
-      warpedImage: undefined,
-      warpMap: undefined,
-      force: 1,
-    },
-    ready: () => false,
-  },
-];
-
-const texts = {
-  home: (
-    <>
-      <h2>Visual algorithms</h2>
-      <p>
-        I make a lot of art with code but I don't wanna be like the other creative coders out there, keeping their programs
-        secret and stuff :/
-      </p>
-      <p>That's why I expose most of my programs in this no code app that everybody can use for free without rate limit</p>
-      <p>
-        Have fun using feeding your own pics/vids to my little monsters, and please mention me if you post anything on social
-        media
-      </p>
-      <p>(´｡•ᵕ•｡`)♡</p>
-      <Nav />
-    </>
-  ),
-};
+const algs = { turbulenz };
 
 export default () => {
-  const [alg, setAlg] = useState<Alg | undefined>(undefined);
-  const [values, setValues] = useState({});
+  const [algName, setAlgName] = useState<keyof typeof algs | "">("");
+  const [values, setValues] = useState<any>({});
 
-  const text = (() => {
-    if (alg === undefined) return texts.home;
-    return alg.text;
-  })();
+  const getAlg = (name: keyof typeof algs | "") => (name === "" ? undefined : algs[name]);
+  const alg = getAlg(algName);
 
-  const selectAlg = (name: string) => {
-    const newAlg = algs.find((a) => a.name === name);
-    setAlg(newAlg);
+  const selectAlg = (name: keyof typeof algs | "") => {
+    setAlgName(name);
+    const newAlg = getAlg(name);
     if (newAlg) {
       setValues(newAlg.defaultValues);
+    } else {
+      setValues({});
     }
   };
 
   return (
     <div className="VisualAlgorithms">
       <div className="-controls">
-        <select value={alg?.name} onChange={(evt) => selectAlg(evt.target.value)}>
+        <select value={algName} onChange={(evt) => selectAlg(evt.target.value as keyof typeof algs | "")}>
           <option>Chose an algorithm</option>
-          {algs.map((alg) => (
-            <option key={alg.name}>{alg.name}</option>
+          {Object.keys(algs).map((name) => (
+            <option key={name} value={name}>
+              {startCase(name)}
+            </option>
           ))}
         </select>
         {alg && <Form options={alg.options} values={values} onChange={setValues} />}
       </div>
       <div className="-text-container">
-        <div className="-text">{text}</div>
+        <div className="-text">{algName === "" ? texts.home : texts[algName]}</div>
       </div>
     </div>
   );

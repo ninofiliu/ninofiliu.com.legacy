@@ -11,12 +11,10 @@ export type NumberOption = {
 
 export type Option = FileOption | NumberOption;
 
-type ValueMap = {
-  file: File;
+export type Value<TOption extends Option> = {
+  file: File | undefined;
   number: Number;
-};
-
-export type Value<TOption extends Option> = ValueMap[TOption["kind"]];
+}[TOption["kind"]];
 
 export type Options = { [name: string]: Option };
 
