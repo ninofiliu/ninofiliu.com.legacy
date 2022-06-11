@@ -39,6 +39,17 @@ hr {
   border-bottom: 1px solid black;
   margin: 2rem 0;
 }
+select {
+  font: inherit;
+  width: 100%;
+  border-radius: none;
+  border: 1px solid black;
+  background-color: transparent;
+  padding: 0.5em;
+}
+option {
+  font: inherit;
+}
 strong {
   color: var(--color);
   font-weight: normal;

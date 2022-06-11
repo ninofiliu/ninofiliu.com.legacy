@@ -8,16 +8,14 @@
   padding: 1rem;
   width: 250px;
 }
-.VisualAlgorithms .-output {
+.VisualAlgorithms .-text-container {
   width: calc(100vw - 250px);
-}
-.VisualAlgorithms .-desc {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.VisualAlgorithms .-desc-content {
+.VisualAlgorithms .-text {
   padding: 1rem;
   max-width: 500px;
   text-align: center;
