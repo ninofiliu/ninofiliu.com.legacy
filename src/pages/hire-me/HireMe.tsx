@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { isExternalLink, isInternalLink, links } from "../../links";
+import Nav from "../../components/Nav";
 import "./HireMe.css";
 import { categoryBySkill, life, Skill } from "./life";
 
@@ -14,21 +13,7 @@ export default () => {
 
   return (
     <div className="u-article">
-      <nav>
-        {links.filter(isInternalLink).map((link, i) => (
-          <>
-            {i > 0 && " / "}
-            <Link to={link.to}>{link.name}</Link>
-          </>
-        ))}
-        {" - "}
-        {links.filter(isExternalLink).map((link, i) => (
-          <>
-            {i > 0 && " / "}
-            <a href={link.href}>{link.name}</a>
-          </>
-        ))}
-      </nav>
+      <Nav />
       <h1>Hire me</h1>
       <p>
         Or just understand what I can do, because I do many things and this can be confusing, so here's basically everything I

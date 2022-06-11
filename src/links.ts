@@ -4,11 +4,11 @@ type BaseLink = {
 };
 type ExternalLink = BaseLink & {
   kind: "external";
-  href: string;
+  href: `https://${string}`;
 };
 type InternalLink = BaseLink & {
   kind: "internal";
-  to: "/" | "/hire-me";
+  to: `/${string}`;
 };
 type Link = InternalLink | ExternalLink;
 
@@ -16,6 +16,9 @@ export const isInternalLink = (link: Link): link is InternalLink => link.kind ==
 export const isExternalLink = (link: Link): link is ExternalLink => link.kind === "external";
 
 export const links: Link[] = [
+  { kind: "internal", to: "/", name: "Home", description: "" },
+  { kind: "internal", to: "/hire-me", name: "Hire me", description: "" },
+  { kind: "internal", to: "/visual-algorithms", name: "Visual algorithms", description: "" },
   {
     kind: "external",
     href: "https://instagram.com/ssttaacckkyy",
@@ -46,6 +49,4 @@ export const links: Link[] = [
     name: "Objkt",
     description: "NFTs",
   },
-  { kind: "internal", to: "/", name: "Home", description: "" },
-  { kind: "internal", to: "/hire-me", name: "Hire me", description: "" },
 ];
