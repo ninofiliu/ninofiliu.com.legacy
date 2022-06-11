@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Form from "../../components/form/Form";
 import "./VisualAlgorithms.css";
 import turbulenz from "./turbulenz";
@@ -24,6 +24,16 @@ export default () => {
     }
   };
 
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [started, setStarted] = useState(false);
+  const start = async () => {
+    setStarted(true);
+    while (!canvasRef.current) {
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+    console.log(canvasRef.current);
+  };
+
   return (
     <div className="VisualAlgorithms">
       <div className="-controls">
@@ -35,11 +45,22 @@ export default () => {
             </option>
           ))}
         </select>
-        {alg && <Form options={alg.options} values={values} onChange={setValues} />}
+        {alg && (
+          <>
+            <p>{alg.ready(values) || <button onClick={start}>Start</button>}</p>
+            <Form options={alg.options} values={values} onChange={setValues} />
+          </>
+        )}
       </div>
-      <div className="-text-container">
-        <div className="-text">{algName === "" ? texts.home : texts[algName]}</div>
-      </div>
+      {started ? (
+        <div className="-out">
+          <canvas ref={canvasRef} />
+        </div>
+      ) : (
+        <div className="-text-container">
+          <div className="-text">{algName === "" ? texts.home : texts[algName]}</div>
+        </div>
+      )}
     </div>
   );
 };

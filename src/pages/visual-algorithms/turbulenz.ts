@@ -1,6 +1,6 @@
 import { Alg } from "./types";
 
-const turbulenzOptions = {
+const options = {
   warpedImage: {
     kind: "file",
     accept: "image/*",
@@ -16,11 +16,18 @@ const turbulenzOptions = {
 } as const;
 
 export default {
-  options: turbulenzOptions,
+  options,
   defaultValues: {
     warpedImage: undefined,
     warpMap: undefined,
     force: 1,
   },
-  ready: () => false,
-} as Alg<typeof turbulenzOptions>;
+  ready: (values) => {
+    if (!values.warpedImage) return "Please upload an image you want to warp";
+    if (!values.warpMap) return "Please upload an image for the warp map";
+    return "";
+  },
+  start: (canvas) => {
+    console.log(canvas);
+  },
+} as Alg<typeof options>;
