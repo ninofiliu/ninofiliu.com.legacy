@@ -27,4 +27,5 @@ export default {
       </p>
     </>
   ),
+  debug: <h2>Debug</h2>,
 };

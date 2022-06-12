@@ -4,12 +4,15 @@ import "./VisualAlgorithms.css";
 import turbulenz from "./turbulenz";
 import texts from "./texts";
 import startCase from "lodash/startCase";
+import debug from "./debug";
+import { AlgRunner } from "./types";
 
-const algs = { turbulenz };
+const algs = { turbulenz, debug };
 
 export default () => {
   const [algName, setAlgName] = useState<keyof typeof algs | "">("");
   const [values, setValues] = useState<any>({});
+  const [runner, setRunner] = useState<AlgRunner>({ play() {}, pause() {} });
 
   const getAlg = (name: keyof typeof algs | "") => (name === "" ? undefined : algs[name]);
   const alg = getAlg(algName);
@@ -27,11 +30,12 @@ export default () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [started, setStarted] = useState(false);
   const start = async () => {
+    if (!alg) return; // won't happen, cf DOM
     setStarted(true);
     while (!canvasRef.current) {
       await new Promise((r) => requestAnimationFrame(r));
     }
-    console.log(canvasRef.current);
+    setRunner(alg.create(canvasRef.current, values));
   };
 
   return (
@@ -47,7 +51,14 @@ export default () => {
         </select>
         {alg && (
           <>
-            <p>{alg.ready(values) || <button onClick={start}>Start</button>}</p>
+            <p>
+              {alg.ready(values) || (
+                <>
+                  <button onClick={start}>Start</button>
+                  <button onClick={runner.pause}>Pause</button>
+                </>
+              )}
+            </p>
             <Form options={alg.options} values={values} onChange={setValues} />
           </>
         )}

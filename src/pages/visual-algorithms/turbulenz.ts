@@ -27,7 +27,10 @@ export default {
     if (!values.warpMap) return "Please upload an image for the warp map";
     return "";
   },
-  start: (canvas) => {
-    console.log(canvas);
+  create(canvas, values) {
+    return {
+      play() {},
+      pause() {},
+    };
   },
 } as Alg<typeof options>;

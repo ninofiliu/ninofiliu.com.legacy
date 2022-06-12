@@ -13,7 +13,7 @@ export type Option = FileOption | NumberOption;
 
 export type Value<TOption extends Option> = {
   file: File | undefined;
-  number: Number;
+  number: number;
 }[TOption["kind"]];
 
 export type Options = { [name: string]: Option };

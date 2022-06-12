@@ -20,3 +20,7 @@
   max-width: 500px;
   text-align: center;
 }
+.VisualAlgorithms .-out {
+  width: calc(100vw - 250px);
+  height: 100%;
+}
