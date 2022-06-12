@@ -1,5 +1,5 @@
-import { Options, Values } from "./types";
 import lowerCase from "lodash/lowerCase";
+import { Options, Values } from "./types";
 
 export default <TOptions extends Options>({
   options,

@@ -9,7 +9,7 @@ const options = {
 export default {
   options,
   defaultValues: {
-    nb: 0,
+    nb: 10,
   },
   ready: () => "",
 

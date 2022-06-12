@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { links, isInternalLink, isExternalLink } from "../../links";
+import { links, isExternalLink } from "../../links";
 import Dither from "./Dither";
 import "./Home.css";
 import summary from "./summary";
