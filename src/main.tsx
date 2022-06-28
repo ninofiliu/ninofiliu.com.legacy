@@ -5,6 +5,7 @@ import HireMe from "./pages/hire-me/HireMe";
 import Home from "./pages/home/Home";
 import VisualAlgorithms from "./pages/visual-algorithms/VisualAlgorithms";
 import "./styles.css";
+import "./material-icons.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

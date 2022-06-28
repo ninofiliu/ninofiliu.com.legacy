@@ -67,14 +67,14 @@ export default () => {
         {alg && (
           <>
             <p className="u-button-row">
-              <button onClick={start} disabled={!ready}>
-                Start
+              <button onClick={start} disabled={!ready} title="Start or restart">
+                <span className="material-icons">start</span>
               </button>
-              <button onClick={play} disabled={state !== "paused"}>
-                Play
+              <button onClick={play} disabled={state !== "paused"} title="Play">
+                <span className="material-icons">play_arrow</span>
               </button>
-              <button onClick={pause} disabled={state !== "running"}>
-                Pause
+              <button onClick={pause} disabled={state !== "running"} title="Pause">
+                <span className="material-icons">pause</span>
               </button>
             </p>
             <Form options={alg.options} values={values} onChange={setValues} />
