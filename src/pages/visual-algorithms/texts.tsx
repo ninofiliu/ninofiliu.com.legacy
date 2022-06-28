@@ -25,6 +25,9 @@ export default {
         If a pixel at (x,y) is very red, it's gonna shift the pixel right, and if it's very green, it's gonna shift the pixel
         down
       </p>
+      <p>
+        <a href="https://www.instagram.com/explore/tags/turbulenzalgorithm/">Examples</a>
+      </p>
     </>
   ),
 };
