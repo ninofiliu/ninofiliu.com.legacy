@@ -40,7 +40,7 @@ export default () => {
     while (!canvasRef.current) {
       await new Promise((r) => requestAnimationFrame(r));
     }
-    setRunner(alg.create(canvasRef.current, values));
+    setRunner(await alg.create(canvasRef.current, values));
   };
 
   const play = () => {
