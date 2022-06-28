@@ -2,8 +2,7 @@ type SummaryItem = {
   name: string;
   description: string;
   cover: string;
-  link: string;
-};
+} & ({ link: string } | { to: string });
 
 // TODO: cryptic, drawings, digital experimentations, textures, black and white, youth, bodies, gradient
 export default [
@@ -14,10 +13,10 @@ export default [
     link: "https://supermosh.github.io",
   },
   {
-    name: "Turbulenz",
-    description: "A visual algorithm that puts wind in the pixels of your pictures",
+    name: "Visual algorithms",
+    description: "Use my visual algorithms on your own pictures",
     cover: "/covers/cover-turbulenz.jpg",
-    link: "https://turbulenz.ninofiliu.com/",
+    to: "/visual-algorithms",
   },
   {
     name: "As If My Phone Cares About Museums",

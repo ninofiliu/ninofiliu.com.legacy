@@ -25,14 +25,23 @@ export default () => (
       <Link to="/hire-me">Hire me</Link>
     </div>
     <div className="Home-summary">
-      {summary.map((item) => (
-        <a href={item.link} className="Home-summary-item" key={item.name}>
-          <img src={item.cover}></img>
-          <div>
-            <strong>{item.name}</strong>: {item.description}
-          </div>
-        </a>
-      ))}
+      {summary.map((item) =>
+        "link" in item ? (
+          <a href={item.link} className="Home-summary-item" key={item.name}>
+            <img src={item.cover}></img>
+            <div>
+              <strong>{item.name}</strong>: {item.description}
+            </div>
+          </a>
+        ) : (
+          <Link to={item.to} className="Home-summary-item" key={item.name}>
+            <img src={item.cover}></img>
+            <div>
+              <strong>{item.name}</strong>: {item.description}
+            </div>
+          </Link>
+        )
+      )}
     </div>
   </div>
 );
