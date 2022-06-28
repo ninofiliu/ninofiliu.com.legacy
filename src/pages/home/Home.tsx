@@ -16,10 +16,9 @@ export default () => (
       <br />
       <br />
       {links.filter(isExternalLink).map((link) => (
-        <>
+        <div key={link.name}>
           <a href={link.href}>{link.name}</a>: {link.description}
-          <br />
-        </>
+        </div>
       ))}
       <br />
       <Link to="/hire-me">Hire me</Link>
