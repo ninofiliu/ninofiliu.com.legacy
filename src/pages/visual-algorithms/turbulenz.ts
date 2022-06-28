@@ -22,11 +22,7 @@ export default {
     warpMap: undefined,
     force: 1,
   },
-  ready: (values) => {
-    if (!values.warpedImage) return "Please upload an image you want to warp";
-    if (!values.warpMap) return "Please upload an image for the warp map";
-    return "";
-  },
+  ready: (values) => !!(values.warpedImage && values.warpMap),
   create(canvas, values) {
     return {
       play() {},

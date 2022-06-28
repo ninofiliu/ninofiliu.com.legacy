@@ -28,4 +28,5 @@ export default {
     </>
   ),
   debug: <h2>Debug</h2>,
+  debugRed: <h2>Debug red</h2>,
 };

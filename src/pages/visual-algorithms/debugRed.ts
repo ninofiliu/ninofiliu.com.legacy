@@ -18,7 +18,7 @@ export default {
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext("2d")!;
-    ctx.fillStyle = "lime";
+    ctx.fillStyle = "red";
 
     let paused = false;
     const loop = () => {
