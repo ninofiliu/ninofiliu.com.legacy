@@ -2,13 +2,11 @@ import startCase from "lodash/startCase";
 import { useRef, useState } from "react";
 import Form from "../../components/form/Form";
 import "./VisualAlgorithms.css";
-import debug from "./debug";
 import texts from "./texts";
 import turbulenz from "./turbulenz";
 import { AlgRunner } from "./types";
-import debugRed from "./debugRed";
 
-const algs = { turbulenz, debug, debugRed };
+const algs = { turbulenz };
 
 export default () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
