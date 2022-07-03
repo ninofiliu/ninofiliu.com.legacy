@@ -1,3 +1,4 @@
+import objectFitCover from "./objectFitCover";
 import { Alg } from "./types";
 
 const options = {
@@ -36,13 +37,20 @@ export default {
     const warpMapImg = document.createElement("img");
     warpMapImg.src = URL.createObjectURL(values.warpMap);
     await warpMapImg.decode();
-    ctx.drawImage(warpMapImg, 0, 0, warpMapImg.width, warpMapImg.height, 0, 0, width, height);
+    ctx.drawImage(warpMapImg, ...objectFitCover(warpMapImg.width, warpMapImg.height, width, height), 0, 0, width, height);
     const warpMapImageData = ctx.getImageData(0, 0, width, height);
 
     const warpedImageImg = document.createElement("img");
     warpedImageImg.src = URL.createObjectURL(values.warpedImage);
     await warpedImageImg.decode();
-    ctx.drawImage(warpedImageImg, 0, 0, warpedImageImg.width, warpedImageImg.height, 0, 0, width, height);
+    ctx.drawImage(
+      warpMapImg,
+      ...objectFitCover(warpedImageImg.width, warpedImageImg.height, width, height),
+      0,
+      0,
+      width,
+      height
+    );
 
     let shouldPause = false;
     const loop = () => {
