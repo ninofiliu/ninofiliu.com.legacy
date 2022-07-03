@@ -1,10 +1,14 @@
 import objectFitCover from "./objectFitCover";
 import { Alg } from "./types";
 
-const batch = 100;
+// TODO
+// - parametrize
+// - investigate exit
+
+const batch = 1000;
 const multiplier = 5;
 const divider = 5;
-const backgroundImage = true;
+const stopAt = 0.5;
 
 const computePalette = (id: ImageData, nb: number) => {
   const length = id.width * id.height;
@@ -48,35 +52,21 @@ export default {
     img.src = URL.createObjectURL(values.image);
     await img.decode();
     ctx.drawImage(img, ...objectFitCover(img.width, img.height, width, height), 0, 0, width, height);
-    const imageData = ctx.getImageData(0, 0, width, height);
+    const id = ctx.getImageData(0, 0, width, height);
 
-    const palette = computePalette(imageData, 8);
+    const palette = computePalette(id, 8);
 
-    const stopAt = 0.5;
-    // const stopFn = ({
-    //   basic: (l) => l < treshold,
-    //   linear: (l, i) => l < (i / divider),
-    //   looped: (l, i) => ((l * multiplier) % 1) < (i / divider),
-    // })[stop];
     const stopFn = (light: number, i: number) => (light * multiplier) % 1 < i / divider;
 
     const createMatrix = <T>(fn: (x: number, y: number) => T) =>
       new Array(width).fill(null).map((_, x) => new Array(height).fill(null).map((__, y) => fn(x, y)));
 
-    const srcData = imageData.data;
-    const srcR = createMatrix((x, y) => srcData[4 * (width * y + x)] / 256);
-    const srcG = createMatrix((x, y) => srcData[4 * (width * y + x) + 1] / 256);
-    const srcB = createMatrix((x, y) => srcData[4 * (width * y + x) + 2] / 256);
+    const srcR = createMatrix((x, y) => id.data[4 * (width * y + x)] / 256);
+    const srcG = createMatrix((x, y) => id.data[4 * (width * y + x) + 1] / 256);
+    const srcB = createMatrix((x, y) => id.data[4 * (width * y + x) + 2] / 256);
     const drawnR = createMatrix(() => false);
     const drawnG = createMatrix(() => false);
     const drawnB = createMatrix(() => false);
-
-    if (backgroundImage) {
-      ctx.putImageData(imageData, 0, 0);
-    } else {
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, width, height);
-    }
 
     const posR = { x: Math.floor(width / 2), y: Math.floor(height / 2) };
     const posG = { x: Math.floor(width / 2), y: Math.floor(height / 2) };
@@ -100,6 +90,9 @@ export default {
     };
 
     const isInCanvas = ({ x, y }: { x: number; y: number }) => x >= 0 && x < width && y >= 0 && y < height;
+
+    let done = false;
+
     function* spiralPositions(pos: { x: number; y: number }) {
       const spiralPosition = { ...pos };
       for (let l = 1; l < Math.max(width, height); l += 2) {
@@ -120,8 +113,9 @@ export default {
           if (isInCanvas(spiralPosition)) yield spiralPosition;
         }
       }
-      throw "done";
+      done = true;
     }
+
     const moveColor = (drawn: boolean[][], pos: { x: number; y: number }, src: number[][]) => {
       let i = 0;
       for (const spiralPosition of spiralPositions(pos)) {
@@ -131,7 +125,7 @@ export default {
           if (stopFn(src[x][y], i)) {
             pos.x = spiralPosition.x;
             pos.y = spiralPosition.y;
-            return i;
+            return;
           }
         }
       }
@@ -145,20 +139,17 @@ export default {
     let nbDrawn = 0;
     let playing = true;
     const loop = () => {
+      if (done) return;
       if (!playing) return;
       if (nbDrawn > 3 * width * height * stopAt) return;
-      try {
-        for (let i = 0; i < batch; i++) {
-          move();
-          draw();
-          nbDrawn++;
-        }
-        requestAnimationFrame(loop);
-      } catch (e) {
-        console.log(e);
-        if (e === "done") return;
-        throw e;
+
+      for (let i = 0; i < batch; i++) {
+        if (done) return;
+        move();
+        draw();
+        nbDrawn++;
       }
+      requestAnimationFrame(loop);
     };
     loop();
 
