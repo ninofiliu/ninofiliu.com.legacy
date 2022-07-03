@@ -1,4 +1,5 @@
 import lowerCase from "lodash/lowerCase";
+import NumberInput from "./NumberInput";
 import { Options, Values } from "./types";
 
 export default <TOptions extends Options>({
@@ -23,11 +24,7 @@ export default <TOptions extends Options>({
             />
           )}
           {option.kind === "number" && (
-            <input
-              type="number"
-              value={values[name] as number}
-              onChange={(evt) => onChange({ ...values, [name]: +evt.target.value })}
-            />
+            <NumberInput value={values[name] as number} onChange={(newValue) => onChange({ ...values, [name]: newValue })} />
           )}
         </div>
       ))}
