@@ -1,4 +1,5 @@
 import lowerCase from "lodash/lowerCase";
+import FileInput from "./FileInput";
 import NumberInput from "./NumberInput";
 import { Options, Values } from "./types";
 
@@ -17,10 +18,10 @@ export default <TOptions extends Options>({
         <div className="Option" key={name}>
           <h4>{lowerCase(name)}</h4>
           {option.kind === "file" && (
-            <input
-              type="file"
+            <FileInput
+              value={values[name] as File | undefined}
+              onChange={(newValue) => onChange({ ...values, [name]: newValue })}
               accept={option.accept}
-              onChange={(evt) => onChange({ ...values, [name]: evt.target.files![0] })}
             />
           )}
           {option.kind === "number" && (

@@ -1,0 +1,40 @@
+.FileInput {
+  position: relative;
+  display: block;
+  height: 5rem;
+  cursor: pointer;
+}
+.FileInput-placeholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+}
+.FileInput-placeholder:hover {
+  border-color: var(--color);
+  color: var(--color);
+}
+.FileInput img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.FileInput input {
+  display: none;
+}
+.FileInput-hover-text {
+  position: absolute;
+  inset: 0 0 0 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 255, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.FileInput:hover .FileInput-hover-text {
+  display: flex;
+}
