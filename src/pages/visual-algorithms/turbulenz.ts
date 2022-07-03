@@ -52,10 +52,10 @@ export default {
       for (let x = 0; x < width; x++) {
         for (let y = 0; y < height; y++) {
           const mapI = 4 * (width * y + x);
-          const dx = values.force * (-0.5 + warpMapImageData.data[mapI] / 256);
-          const dy = values.force * (-0.5 + warpMapImageData.data[mapI + 1] / 256);
-          const mappedX = ~~(x + dx + width) % width;
-          const mappedY = ~~(y + dy + height) % height;
+          const dx = values.force * (-0.5 + warpMapImageData.data[mapI] / 255);
+          const dy = values.force * (-0.5 + warpMapImageData.data[mapI + 1] / 255);
+          const mappedX = Math.round(x + dx + width) % width;
+          const mappedY = Math.round(y + dy + height) % height;
           const mappedI = 4 * (width * mappedY + mappedX);
           for (let i = 0; i < 4; i++) {
             nextId.data[mapI + i] = currentId.data[mappedI + i];
