@@ -24,11 +24,7 @@ export default () => {
     setState("idle");
     setAlgName(name);
     const newAlg = getAlg(name);
-    if (newAlg) {
-      setValues(newAlg.defaultValues);
-    } else {
-      setValues({});
-    }
+    setValues(newAlg ? newAlg.defaultValues : {});
   };
 
   const start = async () => {
