@@ -36,15 +36,15 @@ export default {
 
     const warpMapImg = document.createElement("img");
     warpMapImg.src = URL.createObjectURL(values.warpMap);
-    await warpMapImg.decode();
+    const warpedImageImg = document.createElement("img");
+    warpedImageImg.src = URL.createObjectURL(values.warpedImage);
+    await Promise.all([warpMapImg.decode(), warpedImageImg.decode()]);
+
     ctx.drawImage(warpMapImg, ...objectFitCover(warpMapImg.width, warpMapImg.height, width, height), 0, 0, width, height);
     const warpMapImageData = ctx.getImageData(0, 0, width, height);
 
-    const warpedImageImg = document.createElement("img");
-    warpedImageImg.src = URL.createObjectURL(values.warpedImage);
-    await warpedImageImg.decode();
     ctx.drawImage(
-      warpMapImg,
+      warpedImageImg,
       ...objectFitCover(warpedImageImg.width, warpedImageImg.height, width, height),
       0,
       0,
