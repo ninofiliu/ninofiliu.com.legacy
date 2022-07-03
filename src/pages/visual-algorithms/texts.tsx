@@ -30,4 +30,21 @@ export default {
       </p>
     </>
   ),
+  scratch: (
+    <>
+      <h2>Scratch</h2>
+      <p>
+        One of my first algorithm, originally created to draw the way humans draw: start the pen somewhere, and move
+        continuously the pen in whichever direction has the most shadow.
+      </p>
+      <p>It turned out less human-like than I thought, but the produced textures and paths have a beauty of their own.</p>
+      <p>
+        <a href="https://www.instagram.com/p/CRtYw1sCaoP/">Example 1</a>
+        {" / "}
+        <a href="https://www.instagram.com/p/CQ8YXHurWkj/">Example 2</a>
+        {" / "}
+        <a href="https://www.instagram.com/p/CPvu9KRCFaF/">also used in As If My Phone Cares About Museums</a>
+      </p>
+    </>
+  ),
 };

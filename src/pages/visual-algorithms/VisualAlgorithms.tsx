@@ -5,8 +5,9 @@ import "./VisualAlgorithms.css";
 import texts from "./texts";
 import turbulenz from "./turbulenz";
 import { AlgRunner } from "./types";
+import scratch from "./scratch";
 
-const algs = { turbulenz };
+const algs = { turbulenz, scratch };
 
 export default () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
