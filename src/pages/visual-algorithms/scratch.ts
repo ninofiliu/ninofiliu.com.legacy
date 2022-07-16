@@ -3,12 +3,11 @@ import { Alg } from "./types";
 
 // TODO
 // - parametrize
-// - investigate exit
 
 const batch = 1000;
 const multiplier = 5;
 const divider = 5;
-const stopAt = 0.5;
+const stopAt = 0.99;
 
 const computePalette = (id: ImageData, nb: number) => {
   const length = id.width * id.height;
@@ -141,7 +140,10 @@ export default {
     const loop = () => {
       if (done) return;
       if (!playing) return;
-      if (nbDrawn > 3 * width * height * stopAt) return;
+      if (nbDrawn > width * height * stopAt) {
+        done = true;
+        return;
+      }
 
       for (let i = 0; i < batch; i++) {
         if (done) return;
