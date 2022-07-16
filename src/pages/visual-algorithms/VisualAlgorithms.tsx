@@ -6,8 +6,9 @@ import texts from "./texts";
 import turbulenz from "./turbulenz";
 import { AlgRunner } from "./types";
 import scratch from "./scratch";
+import emptyAlg from "./emptyAlg";
 
-const algs = { turbulenz, scratch };
+const algs = { turbulenz, scratch, distortio: emptyAlg, supermosh: emptyAlg };
 
 export default () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

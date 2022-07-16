@@ -47,4 +47,23 @@ export default {
       </p>
     </>
   ),
+  distortio: (
+    <>
+      <h2>Distortio</h2>
+      <p>
+        The algorithm behind{" "}
+        <a href="https://objkt.com/profile/tz1P4WFu3TojcvkiLdgRnsnf3jZ6F1DZzFtb/created">the "They" NFT serie</a>
+      </p>
+      <p>Distorts a picture or video based on another picture or video</p>
+      <p>Not yet ported here, but coming soon!</p>
+    </>
+  ),
+  supermosh: (
+    <>
+      <h2>Supermosh</h2>
+      <p>
+        You got lost. Go to <a href="//supermosh.github.io">supermosh.github.io</a> {";)"}
+      </p>
+    </>
+  ),
 };
