@@ -1,13 +1,7 @@
 import objectFitCover from "./objectFitCover";
 import { Alg } from "./types";
 
-// TODO
-// - parametrize
-
 const batch = 1000;
-const multiplier = 5;
-const divider = 5;
-const stopAt = 0.99;
 
 const computePalette = (id: ImageData, nb: number) => {
   const length = id.width * id.height;
@@ -30,12 +24,30 @@ const options = {
     kind: "file",
     accept: "image/*",
   },
+  curviness: {
+    kind: "number",
+    min: 1,
+    max: 100,
+  },
+  correctness: {
+    kind: "number",
+    min: 1,
+    max: 100,
+  },
+  stopAt: {
+    kind: "number",
+    min: 0,
+    max: 1,
+  },
 } as const;
 
 export default {
   options,
   defaultValues: {
     image: undefined,
+    curviness: 5,
+    correctness: 20,
+    stopAt: 0.5,
   },
   ready: (values) => !!values.image,
   async create(canvas, values) {
@@ -55,7 +67,7 @@ export default {
 
     const palette = computePalette(id, 8);
 
-    const stopFn = (light: number, i: number) => (light * multiplier) % 1 < i / divider;
+    const stopFn = (light: number, i: number) => (light * values.curviness) % 1 < i / values.correctness;
 
     const createMatrix = <T>(fn: (x: number, y: number) => T) =>
       new Array(width).fill(null).map((_, x) => new Array(height).fill(null).map((__, y) => fn(x, y)));
@@ -140,7 +152,7 @@ export default {
     const loop = () => {
       if (done) return;
       if (!playing) return;
-      if (nbDrawn > width * height * stopAt) {
+      if (nbDrawn > width * height * values.stopAt) {
         done = true;
         return;
       }
