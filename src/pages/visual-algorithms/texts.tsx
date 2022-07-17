@@ -1,3 +1,4 @@
+import AppLink from "../../components/AppLink";
 import Nav from "../../components/Nav";
 
 export default {
@@ -26,7 +27,7 @@ export default {
         down
       </p>
       <p>
-        <a href="https://www.instagram.com/explore/tags/turbulenzalgorithm/">Examples</a>
+        <AppLink link="https://www.instagram.com/explore/tags/turbulenzalgorithm/">Examples</AppLink>
       </p>
     </>
   ),
@@ -39,11 +40,11 @@ export default {
       </p>
       <p>It turned out less human-like than I thought, but the produced textures and paths have a beauty of their own.</p>
       <p>
-        <a href="https://www.instagram.com/p/CRtYw1sCaoP/">Example 1</a>
+        <AppLink link="https://www.instagram.com/p/CRtYw1sCaoP/">Example 1</AppLink>
         {" / "}
-        <a href="https://www.instagram.com/p/CQ8YXHurWkj/">Example 2</a>
+        <AppLink link="https://www.instagram.com/p/CQ8YXHurWkj/">Example 2</AppLink>
         {" / "}
-        <a href="https://www.instagram.com/p/CPvu9KRCFaF/">also used in As If My Phone Cares About Museums</a>
+        <AppLink link="https://www.instagram.com/p/CPvu9KRCFaF/">also used in As If My Phone Cares About Museums</AppLink>
       </p>
     </>
   ),
@@ -52,7 +53,7 @@ export default {
       <h2>Distortio</h2>
       <p>
         The algorithm behind{" "}
-        <a href="https://objkt.com/profile/tz1P4WFu3TojcvkiLdgRnsnf3jZ6F1DZzFtb/created">the "They" NFT serie</a>
+        <AppLink link="https://objkt.com/profile/tz1P4WFu3TojcvkiLdgRnsnf3jZ6F1DZzFtb/created">the "They" NFT serie</AppLink>
       </p>
       <p>Distorts a picture or video based on another picture or video</p>
       <p>Not yet ported here, but coming soon!</p>
@@ -62,7 +63,7 @@ export default {
     <>
       <h2>Supermosh</h2>
       <p>
-        You got lost. Go to <a href="//supermosh.github.io">supermosh.github.io</a> {";)"}
+        You got lost. Go to <AppLink link="//supermosh.github.io">supermosh.github.io</AppLink> {";)"}
       </p>
     </>
   ),

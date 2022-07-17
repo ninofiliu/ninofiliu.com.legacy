@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AppLink from "../../components/AppLink";
 import Nav from "../../components/Nav";
 import "./HireMe.css";
 import { categoryBySkill, life, Skill } from "./life";
@@ -42,7 +43,7 @@ export default () => {
               {event.description}
               {event.link && (
                 <>
-                  &nbsp;<a href={event.link}>[…]</a>
+                  &nbsp;<AppLink link={event.link}>[…]</AppLink>
                 </>
               )}
             </div>

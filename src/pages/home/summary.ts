@@ -2,7 +2,8 @@ type SummaryItem = {
   name: string;
   description: string;
   cover: string;
-} & ({ link: string } | { to: string });
+  link: string;
+};
 
 // TODO: cryptic, drawings, digital experimentations, textures, black and white, youth, bodies, gradient
 export default [
@@ -16,7 +17,7 @@ export default [
     name: "Visual algorithms",
     description: "Use my visual algorithms on your own pictures",
     cover: "/covers/cover-turbulenz.jpg",
-    to: "/visual-algorithms",
+    link: "/visual-algorithms",
   },
   {
     name: "As If My Phone Cares About Museums",

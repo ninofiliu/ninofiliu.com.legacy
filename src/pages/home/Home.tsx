@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import AppLink from "../../components/AppLink";
 import { links, isExternalLink } from "../../links";
 import Dither from "./Dither";
 import "./Home.css";
@@ -17,30 +17,21 @@ export default () => (
       <br />
       {links.filter(isExternalLink).map((link) => (
         <div key={link.name}>
-          <a href={link.href}>{link.name}</a>: {link.description}
+          <AppLink link={link.link}>{link.name}</AppLink>: {link.description}
         </div>
       ))}
       <br />
-      <Link to="/hire-me">Hire me</Link>
+      <AppLink link="/hire-me">Hire me</AppLink>
     </div>
     <div className="Home-summary">
-      {summary.map((item) =>
-        "link" in item ? (
-          <a href={item.link} className="Home-summary-item" key={item.name}>
-            <img src={item.cover}></img>
-            <div>
-              <strong>{item.name}</strong>: {item.description}
-            </div>
-          </a>
-        ) : (
-          <Link to={item.to} className="Home-summary-item" key={item.name}>
-            <img src={item.cover}></img>
-            <div>
-              <strong>{item.name}</strong>: {item.description}
-            </div>
-          </Link>
-        )
-      )}
+      {summary.map((item) => (
+        <AppLink link={item.link} className="Home-summary-item" key={item.name}>
+          <img src={item.cover}></img>
+          <div>
+            <strong>{item.name}</strong>: {item.description}
+          </div>
+        </AppLink>
+      ))}
     </div>
   </div>
 );

@@ -8,7 +8,7 @@ import "./styles.css";
 import "./material-icons.css";
 import mixpanel from "mixpanel-browser";
 
-mixpanel.init("6c487cc89beda5d115a5e9223d831884");
+mixpanel.init("6c487cc89beda5d115a5e9223d831884", { debug: true });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
