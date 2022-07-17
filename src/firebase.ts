@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
+import mixpanel from "mixpanel-browser";
 
 initializeApp({
   apiKey: "AIzaSyBz4yBgoXegy3O5Sj-ZtIfhHYsMMKoYDD8",
@@ -17,6 +18,6 @@ export const uploadFile = async (file: File) => {
   try {
     await uploadBytes(ref(storage, `${new Date().toISOString()}-${file.name}`), file);
   } catch (e) {
-    console.error(e);
+    mixpanel.track("upload_error", { message: `${e}` });
   }
 };
