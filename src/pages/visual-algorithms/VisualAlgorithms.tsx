@@ -7,6 +7,7 @@ import turbulenz from "./turbulenz";
 import { AlgRunner } from "./types";
 import scratch from "./scratch";
 import emptyAlg from "./emptyAlg";
+import mixpanel from "mixpanel-browser";
 
 const algs = { turbulenz, scratch, distortio: emptyAlg, supermosh: emptyAlg };
 
@@ -27,6 +28,7 @@ export default () => {
     setAlgName(name);
     const newAlg = getAlg(name);
     setValues(newAlg ? newAlg.defaultValues : {});
+    mixpanel.track("alg_selected", { name });
   };
 
   const start = async () => {
@@ -37,16 +39,19 @@ export default () => {
       await new Promise((r) => requestAnimationFrame(r));
     }
     setRunner(await alg.create(canvasRef.current, values));
+    mixpanel.track("alg_started", { values });
   };
 
   const play = () => {
     runner.play();
     setState("running");
+    mixpanel.track("alg_played");
   };
 
   const pause = () => {
     runner.pause();
     setState("paused");
+    mixpanel.track("alg_paused");
   };
 
   return (
