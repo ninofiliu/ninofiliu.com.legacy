@@ -54,7 +54,7 @@ export default [
     name: "clairefrances.fr",
     description: "Portfolio website for my friend Claire",
     cover: "/covers/claire-frances.jpg",
-    link: "clairefrances.fr",
+    link: "https://clairefrances.fr",
   },
   {
     name: "esgrep",
