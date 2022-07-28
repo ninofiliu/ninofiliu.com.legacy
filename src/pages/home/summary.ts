@@ -10,13 +10,13 @@ export default [
   {
     name: "Supermosh",
     description: "Datamoshing in the browser",
-    cover: "/covers/cover-supermosh.jpg",
+    cover: "/covers/supermosh.jpg",
     link: "https://supermosh.github.io",
   },
   {
     name: "Visual algorithms",
     description: "Use my visual algorithms on your own pictures",
-    cover: "/covers/cover-turbulenz.jpg",
+    cover: "/covers/turbulenz.jpg",
     link: "/visual-algorithms",
   },
   {
